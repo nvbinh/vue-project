@@ -14,12 +14,12 @@
       </thead>
       <tbody>
         <template v-for="(row, key) in data.rows">
-          <tr class="head" :key="key">
+          <tr class="head" :key="key" @click="setActiveRow(key)">
             <td>{{row.title.order}}</td>
             <td>{{row.title.type}}</td>
             <td>{{row.title.question}}</td>
           </tr>
-          <tr class="body active" :key="`${key}_content}`">
+          <tr class="body" :key="`${key}_content}`" :class="{ active: selectRow == key}">
             <td colspan="3">
               <div class="answer img-preview" id="cont0" v-html="row.content">
               </div>
@@ -49,8 +49,10 @@ export default {
     this.data.columns = [ ...jsonData.columns ]
     this.data.rows = [ ...jsonData.rows ]
   },
-  setActiveRow (index) {
-    this.selectRow = index
+  methods: {
+    setActiveRow: function (index) {
+      this.selectRow = index
+    }
   }
 }
 </script>
