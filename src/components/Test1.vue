@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     setActiveRow: function (index) {
-      this.selectRow = index
+      this.selectRow === index ? this.selectRow = null : this.selectRow = index
     }
   }
 }
