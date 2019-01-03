@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <a href="#" class="card-link" :key="index">
+    <a href="#" class="card-link" :key="index" v-for="(item, index) in items">
       <article class="blog-card" >
-        <img src="https://via.placeholder.com/150" class="post-image">
+        <img :src="item.image" class="post-image">
         <div class="article-details">
-          <h4 class="post-category">12345</h4>
-          <h3 class="post-title">5678</h3>
-          <p class="post-description">10111213</p>
-          <p class="post-author">abcdefh</p>
+          <h4 class="post-category">{{item.category}}</h4>
+          <h3 class="post-title">{{item.title}}</h3>
+          <p class="post-description">{{item.description}}</p>
+          <p class="post-author">{{item.author}}</p>
         </div>
       </article>
     </a>

@@ -1,10 +1,10 @@
 <template>
   <div style="width: 800px;">
-    <div class="row mb-1">
-      <div class="col-sm-2">begin</div>
+    <div class="row mb-1" :key="index" v-for="(item, index) in items">
+      <div class="col-sm-2">{{item.title}}</div>
       <div class="col-sm-10 pt-1">
         <div class="progress">
-          <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="66" class="progress-bar bg-success" style="background-color: #DC143C; width:30%"  ><!---->
+          <div role="progressbar" aria-valuemin="0" aria-valuemax="100" v-bind:aria-valuenow="progressPercent" class="progress-bar bg-success" v-bind:style="{backgroundColor: item.color, width: getRandomPercent(item.size, 0, 100)}">
           </div>
         </div>
       </div>
@@ -19,11 +19,23 @@ export default {
   name: 'Test3',
   data () {
     return {
-      items: []
+      items: [],
+      progressPercent: 66
     }
   },
   mounted () {
     this.items = jsonData
+  },
+  methods: {
+    getRandomPercent (current, min, max) {
+      const ranNumber = Math.floor(Math.random() * (max - min + 1)) + min
+      return (ranNumber + '%')
+    }
+  },
+  ready: function () {
+    setInterval(() => {
+      this.getRandomPercent(0, 0, 100)
+    }, 2000)
   }
 }
 </script>
